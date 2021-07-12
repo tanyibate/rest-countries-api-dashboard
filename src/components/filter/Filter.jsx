@@ -16,8 +16,7 @@ export default function Filter() {
       <div className="w-56 justify-between  rounded shadow-md text-left font-semibold pl-8 space-y-4 py-4 absolute bg-white top-14 mt-1">
         <p className="">Africa</p>
         <p className="">Asia</p>
-        <p className="">North America</p>
-        <p className="">South America</p>
+        <p className="">Americas</p>
         <p className="">Europe</p>
         <p className="">Ocenia</p>
       </div>
