@@ -27,6 +27,8 @@ export default function Countries() {
           setCountries(res.data);
           setDataLoading(false);
         });
+    } else {
+      getAllCountries();
     }
   }
 
