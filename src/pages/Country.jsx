@@ -87,13 +87,14 @@ export default function Country() {
               Border Countries:
             </p>
             <div className="flex flex-wrap">
-              {country.borders.map((el) => {
-                return (
-                  <div className="shadow w-28 h-6 text-center rounded-sm bg-white text-xs flex items-center justify-center mx-1 mb-2">
-                    <p>{el}</p>
-                  </div>
-                );
-              })}
+              {country.borders &&
+                country.borders.map((el) => {
+                  return (
+                    <div className="shadow w-28 h-6 text-center rounded-sm bg-white text-xs flex items-center justify-center mx-1 mb-2">
+                      <p>{el}</p>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>
