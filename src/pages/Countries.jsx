@@ -12,17 +12,28 @@ export default function Countries() {
 
   async function getAllCountries() {
     setDataLoading(true);
-    axios.get("https://restcountries.eu/rest/v2/all").then((res) => {
+    axios.get("https://restcountries.com/v2/all").then((res) => {
       setCountries(res.data);
       setDataLoading(false);
     });
   }
-
+  async function getCountriesByRegion() {
+    if (regionSearched) {
+      axios
+        .get(`https://restcountries.com/v2/region/${regionSearched}`)
+        .then((res) => {
+          setCountries(res.data);
+          setDataLoading(false);
+        });
+    } else {
+      getAllCountries();
+    }
+  }
   async function getCountriesByName() {
     if (countrySearched) {
       setDataLoading(true);
       axios
-        .get(`https://restcountries.eu/rest/v2/name/${countrySearched}`)
+        .get(`https://restcountries.com/v2/name/${countrySearched}`)
         .then((res) => {
           setCountries(res.data);
           setDataLoading(false);
@@ -38,11 +49,14 @@ export default function Countries() {
   useEffect(() => {
     getCountriesByName();
   }, [countrySearched]);
+  useEffect(() => {
+    getCountriesByRegion();
+  }, [regionSearched]);
   return (
-    <div className="w-full h-full px-4 md:px-12 lg:px-16 pt-6 sm:pt-18 overflow-scroll">
+    <div className="w-full max-w-screen-lg 2xl:max-w-screen-xl xl h-full px-4 pt-6 sm:pt-18 overflow-scroll">
       <div className="flex items-start justify-between flex-wrap">
         <SearchBar setCountrySearched={setCountrySearched} />
-        <Filter />
+        <Filter setRegionSearched={setRegionSearched} />
       </div>
       <div className="flex justify-center sm:justify-between flex-wrap">
         {countries.map((country) => {

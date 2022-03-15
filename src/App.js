@@ -3,6 +3,7 @@ import "./App.scss";
 import NavBar from "./components/navbar/NavBar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Countries from "./pages/Countries";
+import Country from "./pages/Country";
 
 function App() {
   return (
@@ -16,8 +17,8 @@ function App() {
             <Route path="/about">
               <About />
             </Route>
-            <Route path="/users">
-              <Users />
+            <Route path="/country">
+              <Country />
             </Route>
             <Route path="/">
               <Countries />
