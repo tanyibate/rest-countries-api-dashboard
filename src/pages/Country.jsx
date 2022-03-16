@@ -19,7 +19,7 @@ export default function Country() {
   const getLanguages = (country) => {
     let languages = "";
     country.languages.forEach((el, index) => {
-      if (index != country.languages.length - 1) {
+      if (index !== country.languages.length - 1) {
         languages += `${el.name},`;
       } else languages += el.name;
     });

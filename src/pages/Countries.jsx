@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import SearchBar from "../components/searchbar/SearchBar";
 import Filter from "../components/filter/Filter";
 import CountryCard from "../components/country-card/CountryCard";
@@ -8,50 +8,44 @@ export default function Countries() {
   const [countrySearched, setCountrySearched] = useState("");
   const [regionSearched, setRegionSearched] = useState("");
   const [countries, setCountries] = useState([]);
-  const [dataLoading, setDataLoading] = useState(false);
 
-  async function getAllCountries() {
-    setDataLoading(true);
-    axios.get("https://restcountries.com/v2/all").then((res) => {
+  const getAllCountries = useCallback(async () => {
+    await axios.get("https://restcountries.com/v2/all").then((res) => {
       setCountries(res.data);
-      setDataLoading(false);
     });
-  }
-  async function getCountriesByRegion() {
+  }, []);
+  const getCountriesByRegion = useCallback(async () => {
     if (regionSearched) {
-      axios
+      await axios
         .get(`https://restcountries.com/v2/region/${regionSearched}`)
         .then((res) => {
           setCountries(res.data);
-          setDataLoading(false);
         });
     } else {
-      getAllCountries();
+      await getAllCountries();
     }
-  }
-  async function getCountriesByName() {
+  }, [getAllCountries, regionSearched]);
+  const getCountriesByName = useCallback(async () => {
     if (countrySearched) {
-      setDataLoading(true);
-      axios
+      await axios
         .get(`https://restcountries.com/v2/name/${countrySearched}`)
         .then((res) => {
           setCountries(res.data);
-          setDataLoading(false);
         });
     } else {
-      getAllCountries();
+      await getAllCountries();
     }
-  }
+  }, [getAllCountries, countrySearched]);
 
   useEffect(() => {
     getAllCountries();
-  }, []);
+  }, [getAllCountries]);
   useEffect(() => {
     getCountriesByName();
-  }, [countrySearched]);
+  }, [countrySearched, getCountriesByName]);
   useEffect(() => {
     getCountriesByRegion();
-  }, [regionSearched]);
+  }, [regionSearched, getCountriesByRegion]);
   return (
     <div className="w-full max-w-screen-lg 2xl:max-w-screen-xl xl h-full px-4 pt-6 sm:pt-18 overflow-scroll">
       <div className="flex items-start justify-between flex-wrap">

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import allReducers from "./reducers/index";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-export default () => {
+const returnStore = () => {
   let store = createStore(
     allReducers,
     composeWithDevTools(
@@ -12,3 +12,5 @@ export default () => {
   );
   return store;
 };
+
+export default returnStore;

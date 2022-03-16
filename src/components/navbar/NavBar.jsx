@@ -2,8 +2,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 
-import styles from "./navbar-styles.module.scss";
-
 export default function NavBar() {
   return (
     <div
