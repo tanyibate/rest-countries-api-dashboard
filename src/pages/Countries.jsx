@@ -47,12 +47,12 @@ export default function Countries() {
     getCountriesByRegion();
   }, [regionSearched, getCountriesByRegion]);
   return (
-    <div className="w-full max-w-screen-lg 2xl:max-w-screen-xl xl h-full px-4 pt-6 sm:pt-18 overflow-scroll">
+    <div className="flex flex-col w-full max-w-screen-lg 2xl:max-w-screen-xl xl h-full px-4 pt-6 sm:pt-18 overflow-scroll">
       <div className="flex items-start justify-between flex-wrap">
         <SearchBar setCountrySearched={setCountrySearched} />
         <Filter setRegionSearched={setRegionSearched} />
       </div>
-      <div className="flex justify-center sm:justify-between flex-wrap">
+      <div className="flex flex-1 justify-center sm:justify-between flex-wrap overflow-scroll">
         {countries.map((country) => {
           return <CountryCard country={country} key={country.name} />;
         })}

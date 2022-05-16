@@ -6,7 +6,7 @@ export default function SearchBar({ setCountrySearched }) {
     setCountrySearched(event.target.value);
   }
   return (
-    <div className="shadow-md w-full h-full flex items-center sm:w-1/2 lg:w-2/5 h-14 pl-12 py-4 pr-2 rounded-md mb-10 bg-white md:ml-2">
+    <div className="shadow-md w-full h-14 flex items-center sm:w-1/2 lg:w-2/5 h-14 pl-12 py-4 pr-2 rounded-md mb-10 bg-white md:ml-2">
       <FontAwesomeIcon icon={faSearch} className="mr-4" size="1x" />
       <input
         type="text"
